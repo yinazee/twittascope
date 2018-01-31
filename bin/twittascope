@@ -1,0 +1,5 @@
+#!/usr/bin/env ruby
+
+require './lib/twittascope'
+
+Twittascope::CLI.new.call

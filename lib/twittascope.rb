@@ -1,5 +1,3 @@
-require "twittascope/version"
+require_relative "./twittascope/version"
 
-module Twittascope
-  # Your code goes here...
-end
+require_relative './twittascope/cli'
