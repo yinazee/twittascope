@@ -32,30 +32,35 @@ class Twittascope::CLI
   # end
 
   def today_horoscope
-    puts "You will be very lucky today."
+    #scrapes today's horoscope
+    #date
+    #horoscope
+    # puts "You will be very lucky today."
+    @horoscope = Twittascope::Horoscope.today
     option
   end
 
 
-  def tomorrow_horoscope
-    puts "You are reading tomorrow's horoscope"
-    option
-  end
+  # def tomorrow_horoscope
+  #   #scrapes tomorrow's horoscope
+  #   puts "You are reading tomorrow's horoscope"
+  #   @horoscope = Twittascope::Horoscope.tomorrow
+  #   option
+  # end
 
   def selection
     input = nil
     while input != "exit"
       input = gets.strip.downcase
-      # case input
       if input.to_i.between?(1,12)
         today_horoscope
+        option
       else
         puts "Oops! Please try again!"
         list_horoscope
       end
     end
   end
-
 
 
   def goodbye
