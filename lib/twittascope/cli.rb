@@ -16,14 +16,28 @@ class Twittascope::CLI
 
   def today_horoscope
     puts "You will be very lucky today."
-    puts "Type 'A' to learn about your fortune tomorrow."
-    puts "Or type 'B' to main menu."
+    option
   end
 
   def tomorrow_horoscope
     puts "You are reading tomorrow's horoscope"
+    option
+  end
+
+  def option
     puts "Type 'A' to learn about your fortune tomorrow."
     puts "Or type 'B' to main menu."
+    input = nil
+    while input != "exit"
+    input = gets.strip.downcase
+    case input
+      when "a"
+        tomorrow_horoscope
+      when "b"
+        list_horoscope
+      else
+        "Oops! We don't recognize! Please try again!"
+    end
   end
 
   def selection
@@ -32,15 +46,12 @@ class Twittascope::CLI
       input = gets.strip.downcase
       #horoscope will load
       case input
-      when "1"
+      when "1" #the user inputs between 1 to 12
         today_horoscope
-      when "2"
-        today_horoscope
-      when "A"
-        tomorrow_horoscope
-      when "B"
+        option
+      else
+        puts "Oops! Please try again!"
         list_horoscope
-      else "Oops! We don't recognize #{input}! Please try again!"
       end
     end
   end
