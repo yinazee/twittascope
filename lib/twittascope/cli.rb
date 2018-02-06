@@ -57,9 +57,6 @@ end
   #   option
   # end
 
-
-
-
   def goodbye
     puts "Goodluck!"
   end

@@ -11,7 +11,7 @@ Gem::Specification.new do |spec|
 
   spec.summary       = %q{Reads today's horoscope.}
   spec.description   = %q{Reads today's horoscope.}
-  spec.homepage      = "https://www.twittascope.com"
+  spec.homepage      = "http://www.twittascope.com"
   spec.license       = "MIT"
 
   # Prevent pushing this gem to RubyGems.org. To allow pushes either set the 'allowed_push_host'
@@ -34,7 +34,7 @@ Gem::Specification.new do |spec|
   spec.add_development_dependency "rake", "~> 10.0"
   spec.add_development_dependency "rspec"
   spec.add_development_dependency "pry"
-  spec.add_development_dependency "nokogiri"
+  spec.add_dependency "nokogiri"
 
 
 end
