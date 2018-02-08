@@ -1,19 +1,40 @@
 require 'pry'
+require 'open-uri'
+require 'nokogiri'
 
 class Twittascope::Horoscope
 
 attr_accessor :name, :new
 
-def self.today
-  #should return user input's today's horoscope
-  horoscopes = []
-  horoscopes << self.scrape_horoscope
-  horoscopes
-end
-
 def self.scrape_horoscope
   doc = Nokogiri::HTML(open("http://www.twittascope.com/"))
-  binding.pry
+  doc.css(".dh-copy p").text
+  # horoscope_1.name = doc.css("sign-icon sign-1").text
+
+end
+
+def self.list
+  #should return user input's today's horoscope
+  # horoscopes = []
+  # horoscopes << self.scrape_horoscope
+  # horoscopes
+  puts "1. Aries"
+  puts "2. Taurus"
+  puts "3. Gemini"
+
+end
+
+def self.today
+  scrape_horoscope
+end
+
+
+def self.tomorrow
+  scrape_horoscope
+end
+
+
+
 
   #
   # horoscope_1 = self.new
@@ -29,6 +50,6 @@ def self.scrape_horoscope
   # horoscope_3.new = "Gemini. pull from website"
 
 
-end
+
 
 end

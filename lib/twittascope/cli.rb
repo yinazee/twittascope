@@ -5,18 +5,19 @@ class Twittascope::CLI
   def call
     puts "Check your horoscope today!"
     list_horoscope
-    selection
+    display_horoscope
     goodbye
   end
 
   def list_horoscope
-    @horoscope = Twittascope::Horoscope.today
-    @horoscope.each.with_index(1) do |sign, index|
-      puts "#{index}. #{sign.name}"
+    puts "Type in the number of your Horoscope sign."
+    @horoscope = Twittascope::Horoscope.list
+    # @horoscope.each.with_index(1) do |sign, index|
+    #   puts "#{index}. #{sign.name}"
   end
-end
 
-  def selection
+
+  def display_horoscope
     input = nil
     while input != "exit"
       input = gets.strip.downcase
@@ -24,15 +25,15 @@ end
     if input.to_i.between?(1,12)
       #will scrape twittascope's today horoscope from website
       @horoscope = Twittascope::Horoscope.today
-      puts @horoscope[input.to_i-1].new
-      option
+      puts @horoscope[input.to_i-1]
+      more_options
     else
       puts "Oops! Please try again!"
     end
   end
 end
 
-  def option
+  def more_options
     puts "Type 'A' to learn about your fortune tomorrow."
     puts "Or type 'B' to main menu."
     input = nil
@@ -50,12 +51,12 @@ end
 end
 
 
-  # def tomorrow_horoscope
-  #   #scrapes tomorrow's horoscope
-  #   puts "You are reading tomorrow's horoscope"
-  #   @horoscope = Twittascope::Horoscope.tomorrow
-  #   option
-  # end
+  def tomorrow_horoscope
+    #scrapes tomorrow's horoscope
+    puts "You are reading tomorrow's horoscope"
+    @horoscope = Twittascope::Horoscope.tomorrow
+    more_options
+  end
 
   def goodbye
     puts "Goodluck!"
