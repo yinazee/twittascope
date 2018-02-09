@@ -8,9 +8,25 @@ attr_accessor :name, :new
 
 def self.scrape_horoscope
   doc = Nokogiri::HTML(open("http://www.twittascope.com/"))
-  doc.css(".dh-copy p").text
-  # horoscope_1.name = doc.css("sign-icon sign-1").text
+  binding.pry
 
+
+  # doc.css(".dh-copy p").text
+  # doc.css("sign-icon sign-1").text
+end
+
+def shortcut
+  self.scrape_horoscope.css(".dh-signlist")
+
+  
+end
+
+def get_horoscope
+  self.shortcut.each do |sign|
+  sign = Display.new
+  sign.name = sign.css("sign-1").text
+
+end
 end
 
 def self.list
@@ -21,6 +37,7 @@ def self.list
   puts "1. Aries"
   puts "2. Taurus"
   puts "3. Gemini"
+
 
 end
 
