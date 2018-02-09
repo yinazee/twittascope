@@ -11,10 +11,11 @@ class Twittascope::CLI
 
   def list_horoscope
     puts "Type in the number of your Horoscope sign."
-    @horoscope = Twittascope::Horoscope.list
-    # @horoscope.each.with_index(1) do |sign, index|
-    #   puts "#{index}. #{sign.name}"
-  end
+      @horoscope = Twittascope::Horoscope.horoscope_list
+      @horoscope.each.with_index(1) do |sign, i|
+        puts "#{i}. #{sign.name}"
+      end
+    end
 
 
   def display_horoscope
