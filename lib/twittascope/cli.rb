@@ -13,18 +13,13 @@ class Twittascope::CLI
   def list_horoscope
     puts "Type in the number of your Horoscope sign."
       @horoscope = Twittascope::Horoscope.horoscope_list
-      @horoscope.each.with_index(1) do |sign, i|
-        puts "#{i}. #{sign.name}"
-      end
     end
-
 
   def display_horoscope
     input = nil
     while input != "exit"
-      input = gets.strip.downcase
-
-    if input.to_i.between?(1,12)
+      input = gets.to_i
+    if input.between?(1,14)
       #will scrape twittascope's today horoscope from website
       @horoscope = Twittascope::Horoscope.today
       puts @horoscope[input.to_i-1]

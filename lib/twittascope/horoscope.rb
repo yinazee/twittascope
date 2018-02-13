@@ -21,18 +21,27 @@ class Twittascope::Horoscope
   def self.scrape_names
     doc = Nokogiri::HTML(open("http://twittascope.com"))
     horoscope = self.new
-    doc.search("li.sign-item").each do |sign|
-      sign.text.strip
-      binding.pry
-    end
-
-
-
-    # horoscope.today = doc.search("dh-copy p").text.strip
-    # horoscope.tomorrow = doc.search("a.wantone").first.attr("href").strip
-
+    doc.search("li.sign-item").each_with_index do |sign, i|
+      puts "#{i+1}. #{sign.text.strip}"
     horoscope
+    end
   end
+
+#   def self.today_news
+#     todays = []
+#     todays << self.today
+#     todays
+#   end
+#
+#
+#   def self.today
+#     doc = Nokogiri::HTML(open("http://twittascope.com"))
+#     today = self.new
+#     doc.search("dh-copy p").each do |fortune|
+#       puts "#{fortune.text.strip}"
+#     today
+#   end
+# end
 
 
 end
