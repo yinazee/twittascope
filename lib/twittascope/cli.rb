@@ -6,6 +6,7 @@ class Twittascope::CLI
     puts "Check your horoscope today!"
     list_horoscope
     display_horoscope
+    tomorrow_horoscope
     goodbye
   end
 
@@ -52,12 +53,23 @@ end
 end
 
 
-  def tomorrow_horoscope
-    #scrapes tomorrow's horoscope
-    puts "You are reading tomorrow's horoscope"
-    @horoscope = Twittascope::Horoscope.tomorrow
-    more_options
-  end
+#   def tomorrow_horoscope
+#     #scrapes tomorrow's horoscope
+#     input = nil
+#     puts "You are reading tomorrow's horoscope"
+#
+#     @horoscope = Twittascope::Horoscope.tomorrow
+#
+#       #will scrape twittascope's today horoscope from website
+#
+#       puts @horoscope[input.to_i-1]
+#       more_options
+#     else
+#       puts "Oops! Please try again!"
+#     end
+#   end
+# end
+#
 
   def goodbye
     puts "Goodluck!"

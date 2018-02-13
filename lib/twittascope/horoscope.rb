@@ -5,6 +5,7 @@ require 'nokogiri'
 class Twittascope::Horoscope
   attr_accessor :name, :today, :tomorrow
 
+
   def self.horoscope_list
     # Scrape woot and meh and then return horoscopes based on that data
     self.horoscope_names
@@ -12,18 +13,23 @@ class Twittascope::Horoscope
 
   def self.horoscope_names
     horoscopes = []
-    horoscopes << self.scrape_today
+    horoscopes << self.scrape_names
     horoscopes
   end
 
 
-  def self.scrape_today
+  def self.scrape_names
     doc = Nokogiri::HTML(open("http://twittascope.com"))
-
     horoscope = self.new
-    horoscope.name = doc.search("h2.main-title").text.strip
-    horoscope.today = doc.search("dh-copy p").text.strip
-    horoscope.tomorrow = doc.search("a.wantone").first.attr("href").strip
+    doc.search("li.sign-item").each do |sign|
+      sign.text.strip
+      binding.pry
+    end
+
+
+
+    # horoscope.today = doc.search("dh-copy p").text.strip
+    # horoscope.tomorrow = doc.search("a.wantone").first.attr("href").strip
 
     horoscope
   end
