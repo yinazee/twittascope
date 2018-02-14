@@ -27,21 +27,22 @@ class Twittascope::Horoscope
     end
   end
 
-#   def self.today_news
-#     todays = []
-#     todays << self.today
-#     todays
-#   end
-#
-#
-#   def self.today
-#     doc = Nokogiri::HTML(open("http://twittascope.com"))
-#     today = self.new
-#     doc.search("dh-copy p").each do |fortune|
-#       puts "#{fortune.text.strip}"
-#     today
-#   end
-# end
+  def self.today
+    todays = []
+    todays << self.today_news
+    todays
+  end
+
+
+  def self.today_news
+    doc = Nokogiri::HTML(open("http://twittascope.com"))
+
+    today = self.new
+    doc.search(".dh-copy p").each do |fortune|
+      puts "#{fortune.text}"
+    today
+  end
+end
 
 
 end

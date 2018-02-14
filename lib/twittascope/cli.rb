@@ -22,7 +22,7 @@ class Twittascope::CLI
     if input.between?(1,14)
       #will scrape twittascope's today horoscope from website
       @horoscope = Twittascope::Horoscope.today
-      puts @horoscope[input.to_i-1]
+      puts @horoscope[input]
       more_options
     else
       puts "Oops! Please try again!"
