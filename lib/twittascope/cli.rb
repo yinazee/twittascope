@@ -14,7 +14,7 @@ class Twittascope::CLI
 
   def list_horoscope
     puts "Type in the number of your Horoscope sign.".yellow
-      @horoscope = Twittascope::Horoscope.horoscope_list
+      @horoscope = Twittascope::Scraper.horoscope_list
     end
 
   def display_horoscope
@@ -27,7 +27,8 @@ class Twittascope::CLI
       puts @horoscope[input]
       more_options
     elsif input == "13"
-      @horoscope = Twittascope::Horoscope.dontknow (****put this on its own scraper method? or its own variable***)
+      @horoscope = Twittascope::Horoscope.dontknow
+      #(****put this on its own scraper method? or its own variable***)
     else
       puts "Oops! Please try again!"
     end

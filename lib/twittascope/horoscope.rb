@@ -7,14 +7,27 @@ class Twittascope::Horoscope
 
   @@all = []
 
-  def initialize(name, today, tomorrow)
-    @name = name
-    @today = today
-    @tomorrow = tomorrow
-    @dontknow = dontknow
-    @@all << self unless @@all.include?(self.name)
+  def initialize(horoscope_array)
+    horoscope_array.each do |sign, index|
+      self.send("#{index}. sign")
+    end
+    @@all << self
   end
 
+  def self.all
+    @@all
+  end
+
+end
+
+  # def self.today
+  # end
+  #
+  # def self.tomorrow
+  # end
+  #
+  # def self.dontknow
+  # end
   #try to figure out how you will display 'don't know'
 
 #   def self.horoscope_list
