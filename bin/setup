@@ -4,6 +4,7 @@ IFS=$'\n\t'
 set -vx
 
 bundle install
+gem install colorize
 
 
 

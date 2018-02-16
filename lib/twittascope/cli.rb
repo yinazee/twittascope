@@ -1,17 +1,19 @@
 #Our CLI Controller
 
+require 'colorize'
+
 class Twittascope::CLI
 
   def call
-    puts "Check your horoscope today!"
+    puts "Check your horoscope today!".yellow
     list_horoscope
     display_horoscope
     tomorrow_horoscope
-    goodbye
+
   end
 
   def list_horoscope
-    puts "Type in the number of your Horoscope sign."
+    puts "Type in the number of your Horoscope sign.".yellow
       @horoscope = Twittascope::Horoscope.horoscope_list
     end
 
