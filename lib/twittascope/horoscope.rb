@@ -3,49 +3,60 @@ require 'open-uri'
 require 'nokogiri'
 
 class Twittascope::Horoscope
-  attr_accessor :name, :today, :tomorrow
+  attr_accessor :name, :today, :tomorrow, :dontknow
 
+  @@all = []
 
-  def self.horoscope_list
-    # Scrape woot and meh and then return horoscopes based on that data
-    self.horoscope_names
+  def initialize(name, today, tomorrow)
+    @name = name
+    @today = today
+    @tomorrow = tomorrow
+    @dontknow = dontknow
+    @@all << self unless @@all.include?(self.name)
   end
 
-  def self.horoscope_names
-    horoscopes = []
-    horoscopes << self.scrape_names
-    horoscopes
-  end
+  #try to figure out how you will display 'don't know'
 
-
-  def self.scrape_names
-    doc = Nokogiri::HTML(open("http://twittascope.com"))
-    horoscope = self.new
-    doc.search("li.sign-item").each_with_index do |sign, i|
-      puts "#{i+1}. #{sign.text.strip}"
-    horoscope
-    end
-  end
-
-  def self.today
-    todays = []
-    todays << self.today_news
-    todays
-  end
-
-
-  def self.today_news
-    doc = Nokogiri::HTML(open("http://twittascope.com"))
-
-    today = self.new
-    doc.search(".dh-copy p").each do |fortune|
-      puts "#{fortune.text}"
-    today
-  end
-end
-
-
-end
+#   def self.horoscope_list
+#     # Scrape woot and meh and then return horoscopes based on that data
+#     self.horoscope_names
+#   end
+#
+#   def self.horoscope_names
+#     horoscopes = []
+#     horoscopes << self.scrape_names
+#     horoscopes
+#   end
+#
+#
+#   def self.scrape_names
+#     doc = Nokogiri::HTML(open("http://twittascope.com"))
+#     horoscope = self.new
+#     doc.search("li.sign-item").each_with_index do |sign, i|
+#       puts "#{i+1}. #{sign.text.strip}"
+#     horoscope
+#     end
+#   end
+#
+#   def self.today
+#     todays = []
+#     todays << self.today_news
+#     todays
+#   end
+#
+#
+#   def self.today_news
+#     doc = Nokogiri::HTML(open("http://twittascope.com"))
+#
+#     today = self.new
+#     doc.search(".dh-copy p").each do |fortune|
+#       puts "#{fortune.text}"
+#     today
+#   end
+# end
+#
+#
+# end
 
 # class Twittascope::Horoscope
 #

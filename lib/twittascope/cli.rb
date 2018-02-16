@@ -5,7 +5,7 @@ require 'colorize'
 class Twittascope::CLI
 
   def call
-    puts "Check your horoscope today!".yellow
+    puts "Check your horoscope today!".green
     list_horoscope
     display_horoscope
     tomorrow_horoscope
@@ -21,11 +21,13 @@ class Twittascope::CLI
     input = nil
     while input != "exit"
       input = gets.to_i
-    if input.between?(1,14)
+    if input.between?(1,13)
       #will scrape twittascope's today horoscope from website
       @horoscope = Twittascope::Horoscope.today
       puts @horoscope[input]
       more_options
+    elsif input == "13"
+      @horoscope = Twittascope::Horoscope.dontknow (****put this on its own scraper method? or its own variable***)
     else
       puts "Oops! Please try again!"
     end
