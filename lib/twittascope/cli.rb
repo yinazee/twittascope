@@ -14,16 +14,16 @@ class Twittascope::CLI
 
   def list_horoscope
     puts "Type in the number of your Horoscope sign.".yellow
-      @horoscope = Twittascope::Scraper.horoscope_list
+      @horoscope = Twittascope::Horoscope.horoscope_list
     end
 
   def display_horoscope
     input = nil
     while input != "exit"
       input = gets.to_i
+      
     if input.between?(1,13)
-      #will scrape twittascope's today horoscope from website
-      @horoscope = Twittascope::Horoscope.today
+      @horoscope = Twittascope::Horoscope.forecast_today
       puts @horoscope[input]
       more_options
     elsif input == "13"

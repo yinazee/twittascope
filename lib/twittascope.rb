@@ -4,7 +4,6 @@ require_relative './twittascope/cli'
 
 require_relative './twittascope/horoscope'
 
-require_relative './twittascope/scraper'
 
 # require "pry"
 # require "nokogiri"
