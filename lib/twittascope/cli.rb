@@ -21,7 +21,7 @@ class Twittascope::CLI
     input = nil
     while input != "exit"
       input = gets.to_i
-      
+
     if input.between?(1,13)
       @horoscope = Twittascope::Horoscope.forecast_today
       puts @horoscope[input]

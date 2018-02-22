@@ -1,7 +1,3 @@
-require 'pry'
-require 'open-uri'
-require 'nokogiri'
-
 class Twittascope::Horoscope
   attr_accessor :name, :today, :tomorrow, :dontknow
 
@@ -27,10 +23,14 @@ end
       sub_page = Nokogiri::HTML(open("http://www.twittascope.com"))
       today = sub_page.css(".dh-copy p").map do |today|
         puts "#{today.text.strip}"
-        
+
       end
     end
 
+  end
+
+  def self.test_this
+    puts "greenlight"
   end
 
       #but i want it in an array
@@ -161,4 +161,4 @@ end
 #
 #
 #
-# end
+end

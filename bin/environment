@@ -1,9 +1,0 @@
-#!/usr/bin/env ruby
-
-# require './lib/twittascope'
-
-require "bundler/setup"
-require "twittascope"
-#
-#
-Twittascope::CLI.new.call
