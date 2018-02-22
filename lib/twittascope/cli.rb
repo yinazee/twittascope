@@ -4,7 +4,7 @@ require 'colorize'
 
 class Twittascope::CLI
 
-  def call
+  def self.play
     puts "Check your horoscope today!".green
     list_horoscope
     display_horoscope

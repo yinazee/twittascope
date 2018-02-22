@@ -4,8 +4,6 @@ class Scraper
 
   # http://www.twittascope.com/?sign=aries
 
-
-
   def self.load_main_page
     html = Nokogiri::HTML(open("mainpage url"))
 
@@ -16,14 +14,15 @@ class Scraper
     # titles
   end
 
-  def self.forecast_today(obj.url)
-    binding.pry
-    html = Nokogiri::HTML(open(url))
+  def self.forecast_today #(obj.url)
 
-    container = html.css(".dh-copy p").first
+    # html = Nokogiri::HTML(open(url))
+    #
+    # container = html.css(".dh-copy p").first
+    #
+    # today = container.text.strip
 
-    today = container.text.strip
-    binding.pry
+
   end
 
 end
