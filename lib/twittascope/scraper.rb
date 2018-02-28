@@ -1,14 +1,26 @@
 require 'pry'
 
-class Twittascope::Scraper
-  def self.names
+require 'pry'
+class Scraper
+#============================================================
+  def self.load_horoscopes
     doc = Nokogiri::HTML(open("http://www.twittascope.com"))
 
-    main = doc.search("div.dh-signlist a.tooltip")
-    binding.pry
+    main = doc.search("ul.site-sign-list li a").each do |t|
+      url = "http://www.twittascope.com" + t["href"]
+      name = url.gsub("http://www.twittascope.com/?sign=", "").capitalize
 
-    # signs
+      Horoscope.new(url, name)
+    end
   end
+
+  def self.load_page(instance)
+
+    instance.description = whatevr you scrape here
+
+  end
+
+
     # scraped = code that gets url end
     # url = "http://www.twittascope.com" + "#{scraped}"
     # Horoscope.new()
