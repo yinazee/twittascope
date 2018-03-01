@@ -4,27 +4,30 @@ require 'pry'
 
 class Scraper
 
-  def self.load_horoscopes
-    horoscopes = []
+  def self.load_urls
+    urls = []
     doc = Nokogiri::HTML(open("http://www.twittascope.com"))
+    main_page = doc.search("ul.site-sign-list li a").each do |item|
+    url = "http://www.twittascope.com" + item["href"] #this iterates all the urls
+    urls << url if uniq?
+    puts "#{urls}"
+        # horoscopes << {name: sign_name, url: sign_url} - student scraper
 
-      main = doc.search("ul.site-sign-list li a").each do |t|
-      url = "http://www.twittascope.com" + t["href"]
-
-      name = url.gsub("http://www.twittascope.com/?sign=", "").capitalize
-      # horoscopes << {name: sign_name, url: sign_url}
-      horoscopes << name
-      # binding.pry
-      horoscopes.each_with_index do |sign, index|
-      index += 1
-      puts "#{index}. #{sign}"
-      horoscopes
-
-      # Horoscope.new(url, name)
+        try working on iterating urls first
+        try following: https://github.com/yinazee/ruby-music-library-cli-v-000/blob/solution/lib/artist.rb
     end
-
   end
-end
+
+  #i have to find a way to iterate through the sites first then grab h1 from each site
+
+  #name = doc.search("h1").text
+  #names << name
+  #names.each_with_index do |sign, index|
+  #puts "#{index+1}. #{sign}"
+  # name = url.gsub("http://www.twittascope.com/?sign=", "").capitalize
+  # Horoscope.new(url, name)
+  #end
+
 
   def self.load_page(instance)
 
