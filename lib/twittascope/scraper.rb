@@ -4,47 +4,34 @@ require 'pry'
 
 class Scraper
 
-  attr_accessor :name
-
-
-  def self.load_url
-    urls = []
+  def self.headlines
     doc = Nokogiri::HTML(open("http://www.twittascope.com"))
-
-
-      main = doc.search("ul.site-sign-list li a").each do |t|
-      url = "http://www.twittascope.com" + t["href"]
-      url.name = url.gsub("http://www.twittascope.com/?sign=", "").capitalize
-      selection = url.name = url #how do i output this
-      urls << selection
-      binding.pry
-      urls
-      blahblah
-
-
-
-      end
-
-  #   end
-  # end
-
-
-
-  def self.load_headlines
     headlines = []
-      # name = url.gsub("http://www.twittascope.com/?sign=", "").capitalize
-    title = Nokogiri::HTML(open(url))
-    headline = title.search("h1").text
-    headlines << headline
-    headlines.each_with_index do |sign, index|
-      puts "#{index+1}. #{sign}"
-    # name = url.gsub("http://www.twittascope.com/?sign=", "").capitalize
-        # Horoscope.new(url, name)
-    headlines
-    end
-  end
-end
+    doc.search("ul.site-sign-list li a").each do |t|
+      url = "http://www.twittascope.com" + t["href"]
 
+      v1 = Nokogiri::HTML(open(url))
+      headline = v1.search("h1").text
+      headlines << headline
+      headlines[0..12].each_with_index do |h1, index|
+        puts "#{index+1}. #{h1}"
+      end
+   end
+   headlines
+  end
+
+  def self.today
+    # doc = Nokogiri::HTML(open("http://www.twittascope.com"))
+    # headlines = []
+    # doc.search("ul.site-sign-list li a").each do |t|
+    #   url = "http://www.twittascope.com" + t["href"]
+    puts "hihi world"
+    end
+
+
+
+# url.name = url.gsub("http://www.twittascope.com/?sign=", "").capitalize
+# selection = url.name = url #how do i output this
 
   def self.load_urls
     doc = Nokogiri::HTML(open("http://www.twittascope.com"))

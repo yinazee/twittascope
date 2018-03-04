@@ -11,11 +11,11 @@
     @@all << self
   end
 
-      # def initialize(url, name)
-      #   @url = url
-      #   @name = name
-      #   @@all << self
-      # end
+  # def self.create_from_collection(horoscope_array)
+  #     horoscope_array.each do |horoscope_hash|
+  #       Horoscope.new(horoscope)_hash)
+  #     end
+  #   end
 
       def self.all
          @@all
