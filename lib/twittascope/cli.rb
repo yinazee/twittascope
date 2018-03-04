@@ -11,7 +11,8 @@ class Twittascope::CLI
     # displays horoscope names and birth dates
     puts "Welcome to Twittascope!".yellow
     puts "Type in the number of your Horoscope sign!".yellow
-      Scraper.load_horoscopes #load all your horoscopes (names and urls only)
+      @names = Scraper.load_headlines #load all your horoscopes (names and urls only)
+
       # use Horoscope.all to displayt list of name
       #condition input to go to an index of that list
       #you will have an instance

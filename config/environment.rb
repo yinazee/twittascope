@@ -11,5 +11,4 @@ require_relative '../lib/twittascope/horoscope'
 require_relative '../lib/twittascope/scraper'
 require_relative '../lib/twittascope/cli'
 
-# Twittascope::CLI.play
-Scraper.load_urls
+Twittascope::CLI.play

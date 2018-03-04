@@ -4,36 +4,48 @@ require 'pry'
 
 class Scraper
 
-  def self.load_urls
-    urls = []
+  def self.load_headlines
+    headlines = []
     doc = Nokogiri::HTML(open("http://www.twittascope.com"))
-    main_page = doc.search("ul.site-sign-list li a").each do |item|
-    url = "http://www.twittascope.com" + item["href"] #this iterates all the urls
-    urls << url if uniq?
-    puts "#{urls}"
-        # horoscopes << {name: sign_name, url: sign_url} - student scraper
-
-        try working on iterating urls first
-        try following: https://github.com/yinazee/ruby-music-library-cli-v-000/blob/solution/lib/artist.rb
+    main = doc.search("ul.site-sign-list li a").each do |t|
+      url = "http://www.twittascope.com" + t["href"]
+      # name = url.gsub("http://www.twittascope.com/?sign=", "").capitalize
+    title = Nokogiri::HTML(open(url))
+    headline = title.search("h1").text
+    headlines << headline
+    headlines.each_with_index do |sign, index|
+      puts "#{index+1}. #{sign}"
+    # name = url.gsub("http://www.twittascope.com/?sign=", "").capitalize
+        # Horoscope.new(url, name)
+    headlines
     end
   end
+end
 
+
+  def self.load_urls
+    doc = Nokogiri::HTML(open("http://www.twittascope.com"))
+
+    urls = []
+    signs = doc.search("ul.site-sign-list li a").text
+    # name = "http://www.twittascope.com" + item["href"].gsub("http://www.twittascope.com/?sign=", "").capitalize #this iterates all the urls
+    urls << signs
+    urls.each_with_index do |name, index|
+      puts "#{name} - #{site}"
+        # horoscopes << {name: sign_name, url: sign_url} - student scraper
+        # try following: https://github.com/yinazee/ruby-music-library-cli-v-000/blob/solution/lib/artist.rb
+    end
+  end
   #i have to find a way to iterate through the sites first then grab h1 from each site
 
-  #name = doc.search("h1").text
-  #names << name
-  #names.each_with_index do |sign, index|
-  #puts "#{index+1}. #{sign}"
-  # name = url.gsub("http://www.twittascope.com/?sign=", "").capitalize
-  # Horoscope.new(url, name)
-  #end
 
 
-  def self.load_page(instance)
 
-    instance.description = whatevr you scrape here
-
-  end
+  # def self.load_page(instance)
+  #
+  #   instance.description = whatevr you scrape here
+  #
+  # end
 
 
     # scraped = code that gets url end
@@ -49,4 +61,4 @@ class Scraper
     # today = container.text.strip
 
 
-end
+end #closes Scraper
