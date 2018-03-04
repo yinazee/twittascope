@@ -2,11 +2,20 @@
     attr_accessor :url, :name, :yesterday, :today, :tomorrow
     @@all = []
 
-      def initialize(url, name)
-        @url = url
-        @name = name
-        @@all << self
-      end
+
+
+  def initialize(horoscope_hash)
+    horoscope_hash.each do |attribute, value|
+      self.send("#{attribute}=", value)
+    end
+    @@all << self
+  end
+
+      # def initialize(url, name)
+      #   @url = url
+      #   @name = name
+      #   @@all << self
+      # end
 
       def self.all
          @@all

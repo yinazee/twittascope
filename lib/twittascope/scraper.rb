@@ -4,19 +4,24 @@ require 'pry'
 
 class Scraper
 
+  attr_accessor :name
+
+
   def self.load_url
     urls = []
     doc = Nokogiri::HTML(open("http://www.twittascope.com"))
-    
+
 
       main = doc.search("ul.site-sign-list li a").each do |t|
-        url = "http://www.twittascope.com" + t["href"]
-        # name = url.gsub("http://www.twittascope.com/?sign=", "").capitalize
-        urls << url
-        binding.pry
+      url = "http://www.twittascope.com" + t["href"]
+      url.name = url.gsub("http://www.twittascope.com/?sign=", "").capitalize
+      selection = url.name = url #how do i output this
+      urls << selection
+      binding.pry
+      urls
+      blahblah
 
 
-        urls
 
       end
 
