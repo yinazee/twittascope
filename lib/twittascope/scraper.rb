@@ -16,17 +16,26 @@ class Scraper
       headlines[0..12].each_with_index do |h1, index|
         puts "#{index+1}. #{h1}"
       end
-   end
-   headlines
+    end
+    headlines
   end
 
   def self.today
-    # doc = Nokogiri::HTML(open("http://www.twittascope.com"))
-    # headlines = []
-    # doc.search("ul.site-sign-list li a").each do |t|
-    #   url = "http://www.twittascope.com" + t["href"]
-    puts "hihi world"
+    doc = Nokogiri::HTML(open("http://www.twittascope.com"))
+    todays = []
+    doc.search("ul.site-sign-list li a").each do |t|
+    url = "http://www.twittascope.com" + t["href"]
+
+      v1 = Nokogiri::HTML(open(url))
+      today = v1.search("div.dh-copy p").text
+      binding.pry
+      todays << today
+      todays[0..12].each_with_index do |x|
+        puts "#{x}"
+      end
     end
+    todays
+  end
 
 
 

@@ -7,8 +7,8 @@ require "colorize"
 require "bundler/setup"
 require "twittascope"
 
-
-
+require_relative '../lib/twittascope/cli'
+Twittascope::CLI.display_today
 
 
 

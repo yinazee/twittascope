@@ -1,16 +1,14 @@
 require 'colorize'
 
-
-
 class Twittascope::CLI
 
   def self.play
-    welcome_menu
+    welcome
     display_today
     goodbye
   end
 
-  def self.welcome_menu
+  def self.welcome
     # displays horoscope names and birth dates
     puts "Welcome to Twittascope!".yellow
     puts "Type in the number of your Horoscope sign!".yellow
@@ -20,21 +18,21 @@ class Twittascope::CLI
       # Horoscope.find_by(name)
   end
 
-  def display_today
+  def self.display_today
+    input = nil
+    while input != "exit"
+    input = gets.to_i
+  if input.between?(1,14)
+    #will scrape twittascope's today horoscope from website
     @horoscope = Scraper.today
-    #   input = nil
-    #   while input != "exit"
-    #     input = gets.to_i
-    #
-    #   if input.between?(1,13)
-    #     puts Scraper.today
-    #     # more_options
-    #     #(****put this on its own scraper method? or its own variable***)
-    #   else
-    #     puts "Oops! Please try again!"
-    #   end
-    # end
+    puts @horoscope[input]
+    more_options
+  else
+    puts "Oops! Please try again!"
   end
+end
+end
+
 
 
 #   def more_options
