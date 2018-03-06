@@ -4,7 +4,7 @@ class Twittascope::CLI
 
   def self.play
     welcome
-    display_today
+    display_today #have trouble running this next step
     goodbye
   end
 
@@ -13,6 +13,8 @@ class Twittascope::CLI
     puts "Welcome to Twittascope!".yellow
     puts "Type in the number of your Horoscope sign!".yellow
       @names = Scraper.headlines
+      headlines[0..12].each_with_index do |h1, index|
+        puts "#{index+1}. #{h1}"
       #condition input to go to an index of that list
       #you will have an instance
       # Horoscope.find_by(name)

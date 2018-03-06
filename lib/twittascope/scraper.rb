@@ -4,18 +4,28 @@ require 'pry'
 
 class Scraper
 
+focus on just scraping the links first
+scrape the main webpage to get all the:
+1.headlines
+2.today
+3.tomorrow
+4.yesterday
+
+after you get all the links then you can scrape the contents from those links
+
   def self.headlines
     doc = Nokogiri::HTML(open("http://www.twittascope.com"))
     headlines = []
     doc.search("ul.site-sign-list li a").each do |t|
       url = "http://www.twittascope.com" + t["href"]
+    end
+  end
+
 
       v1 = Nokogiri::HTML(open(url))
       headline = v1.search("h1").text
       headlines << headline
-      headlines[0..12].each_with_index do |h1, index|
-        puts "#{index+1}. #{h1}"
-      end
+
     end
     headlines
   end

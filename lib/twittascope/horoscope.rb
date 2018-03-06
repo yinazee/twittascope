@@ -1,8 +1,7 @@
   class Horoscope
     attr_accessor :url, :name, :yesterday, :today, :tomorrow
+
     @@all = []
-
-
 
   def initialize(horoscope_hash)
     horoscope_hash.each do |attribute, value|
@@ -10,6 +9,8 @@
     end
     @@all << self
   end
+
+
 
   # def self.create_from_collection(horoscope_array)
   #     horoscope_array.each do |horoscope_hash|
