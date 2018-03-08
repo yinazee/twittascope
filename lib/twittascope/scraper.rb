@@ -4,53 +4,26 @@ require 'pry'
 
 class Scraper
 
-focus on just scraping the links first
-scrape the main webpage to get all the:
-1.headlines
-2.today
-3.tomorrow
-4.yesterday
+  url = "http://www.twittascope.com"
 
-after you get all the links then you can scrape the contents from those links
-
-  def self.headlines
-    doc = Nokogiri::HTML(open("http://www.twittascope.com"))
+  def self.load_headlines
     headlines = []
-    doc.search("ul.site-sign-list li a").each do |t|
-      url = "http://www.twittascope.com" + t["href"]
-    end
-  end
-
-
-      v1 = Nokogiri::HTML(open(url))
-      headline = v1.search("h1").text
-      headlines << headline
-
-    end
-    headlines
-  end
-
-  def self.today
     doc = Nokogiri::HTML(open("http://www.twittascope.com"))
-    todays = []
-    doc.search("ul.site-sign-list li a").each do |t|
-    url = "http://www.twittascope.com" + t["href"]
-
-      v1 = Nokogiri::HTML(open(url))
-      today = v1.search("div.dh-copy p").text
-      binding.pry
-      todays << today
-      todays[0..12].each_with_index do |x|
-        puts "#{x}"
-      end
+    main = doc.search("ul.site-sign-list li a").each do |t|
+      url = "http://www.twittascope.com" + t["href"]
+      # name = url.gsub("http://www.twittascope.com/?sign=", "").capitalize
+    title = Nokogiri::HTML(open(url))
+    headline = title.search("h1").text
+    headlines << headline
+    headlines.each_with_index do |sign, index|
+      puts "#{index+1}. #{sign}"
+    # name = url.gsub("http://www.twittascope.com/?sign=", "").capitalize
+        # Horoscope.new(url, name)
+    headlines
     end
-    todays
   end
+end
 
-
-
-# url.name = url.gsub("http://www.twittascope.com/?sign=", "").capitalize
-# selection = url.name = url #how do i output this
 
   def self.load_urls
     doc = Nokogiri::HTML(open("http://www.twittascope.com"))

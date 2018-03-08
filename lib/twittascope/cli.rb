@@ -4,36 +4,36 @@ class Twittascope::CLI
 
   def self.play
     welcome
-    display_today #have trouble running this next step
-    goodbye
+    #display_today #have trouble running this next step
+    #goodbye
   end
 
   def self.welcome
     # displays horoscope names and birth dates
     puts "Welcome to Twittascope!".yellow
     puts "Type in the number of your Horoscope sign!".yellow
-      @names = Scraper.headlines
-      headlines[0..12].each_with_index do |h1, index|
-        puts "#{index+1}. #{h1}"
+      @names = Scraper.load_headlines
+      # headlines[0..12].each_with_index do |h1, index|
+      #   puts "#{index+1}. #{h1}"
       #condition input to go to an index of that list
       #you will have an instance
       # Horoscope.find_by(name)
   end
-
-  def self.display_today
-    input = nil
-    while input != "exit"
-    input = gets.to_i
-  if input.between?(1,14)
-    #will scrape twittascope's today horoscope from website
-    @horoscope = Scraper.today
-    puts @horoscope[input]
-    more_options
-  else
-    puts "Oops! Please try again!"
-  end
-end
-end
+#
+#   def self.display_today
+#     input = nil
+#     while input != "exit"
+#     input = gets.to_i
+#   if input.between?(1,14)
+#     #will scrape twittascope's today horoscope from website
+#     @horoscope = Scraper.today
+#     puts @horoscope[input]
+#     more_options
+#   else
+#     puts "Oops! Please try again!"
+#   end
+# end
+# end
 
 
 
