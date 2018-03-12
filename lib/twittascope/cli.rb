@@ -12,7 +12,7 @@ class Twittascope::CLI
     # displays horoscope names and birth dates
     puts "Welcome to Twittascope!".yellow
     puts "Type in the number of your Horoscope sign!".yellow
-      @names = Scraper.load_tomorrow
+      @names = Scraper.scrape_tomorrow
       # headlines[0..12].each_with_index do |h1, index|
       #   puts "#{index+1}. #{h1}"
       #condition input to go to an index of that list
