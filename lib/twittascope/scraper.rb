@@ -4,43 +4,51 @@ require 'pry'
 
 class Scraper
 
-  def self.scrape_headlines
+  @@url = "http://www.twittascope.com"
+  #
+  # def
+  #   headlines = []
+  #   doc = Nokogiri::HTML(open(@@url))
+  #     main = doc.search("ul.site-sign-list li a").each do |t|
+  #       url = @@url + t["href"]
+
+  def self.scrape_headline
     headlines = []
-    doc = Nokogiri::HTML(open("http://www.twittascope.com"))
-      main = doc.search("ul.site-sign-list").each do |t|
-        url = "http://www.twittascope.com" + t["href"]
+    doc = Nokogiri::HTML(open(@@url))
+      main = doc.search("ul.site-sign-list li a").each do |t|
+        url = @@url + t["href"]
+
       # name = url.gsub("http://www.twittascope.com/?sign=", "").capitalize
 
         title = Nokogiri::HTML(open(url))
-        todays = []
         headline = title.search("h1").text
         headlines << headline
         end
-  end
+        headlines
+      end
+
 
   def self.scrape_today
-    headlines = []
-    doc = Nokogiri::HTML(open("http://www.twittascope.com"))
-      main = doc.search("ul.site-sign-list").each do |t|
-        url = "http://www.twittascope.com" + t["href"]
+    todays = []
+    doc = Nokogiri::HTML(open(@@url))
+      main = doc.search("ul.site-sign-list li a").each do |t|
+        url = @@url + t["href"]
       # name = url.gsub("http://www.twittascope.com/?sign=", "").capitalize
 
       title = Nokogiri::HTML(open(url))
-      todays = []
-      headline = title.search("h1").text
-      headlines << headline
       tod_copy = title.search(".dh-copy p").text
       todays << tod_copy
       # headlines.each_with_index do |sign, index|
       # puts "#{index+1}. #{sign}"
   end
+  todays
 end
 
   def self.scrape_yesterday
     yesterdays = []
-    doc = Nokogiri::HTML(open("http://www.twittascope.com"))
-    main = doc.search("ul.site-sign-list").each do |t|
-    url = "http://www.twittascope.com" + t["href"]
+    doc = Nokogiri::HTML(open(@@url))
+    main = doc.search("ul.site-sign-list li a").each do |t|
+    url = @@url + t["href"]
 
       title = Nokogiri::HTML(open(url))
         yesterday = title.search("ul.date-nav .yesterday").each do |yes|
@@ -51,13 +59,14 @@ end
           yesterdays << yes_copy
       end
     end
+    yesterdays
   end
 
   def self.scrape_tomorrow
     tomorrows = []
-    doc = Nokogiri::HTML(open("http://www.twittascope.com"))
-    main = doc.search("ul.site-sign-list").each do |t|
-    url = "http://www.twittascope.com" + t["href"]
+    doc = Nokogiri::HTML(open(@@url))
+    main = doc.search("ul.site-sign-list li a").each do |t|
+    url = @@url + t["href"]
 
     title = Nokogiri::HTML(open(url))
      tomorrow = title.search("ul.date-nav .tomorrow").each do |tom|
@@ -66,9 +75,10 @@ end
       tom_doc = Nokogiri::HTML(open(tomorrow_url))
       tom_copy = tom_doc.search(".dh-copy p").text
       tomorrows << tom_copy
-      binding.pry
       end
     end
+    tomorrows
+    binding.pry
   end
 
 
