@@ -5,12 +5,17 @@ require 'pry'
 class Scraper
 
   @@url = "http://www.twittascope.com"
-  #
-  # def
-  #   headlines = []
-  #   doc = Nokogiri::HTML(open(@@url))
-  #     main = doc.search("ul.site-sign-list li a").each do |t|
-  #       url = @@url + t["href"]
+
+  def self.scrape_urls
+    urls = []
+    doc = Nokogiri::HTML(open(@@url))
+      main = doc.search("ul.site-sign-list li a").each do |t|
+        url = @@url + t["href"]
+        urls << url
+      end
+      urls
+    end
+
 
   def self.scrape_headline
     headlines = []

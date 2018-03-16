@@ -1,5 +1,5 @@
   class Horoscope
-    attr_accessor :url, :name, :yesterday, :today, :tomorrow
+    attr_accessor :url, :headline, :yesterday, :today, :tomorrow
 
     @@all = []
 
