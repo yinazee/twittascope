@@ -3,9 +3,10 @@ require 'colorize'
 class Twittascope::CLI
 
   def self.play
-    work
+    # work
     welcome
     display_today
+    goodbye
   end
 
   def self.work
@@ -34,7 +35,7 @@ end
   end
 
 
-  def goodbye
+  def self.goodbye
     puts "Goodluck!"
   end
 
@@ -44,16 +45,16 @@ end
 
   def self.display_today
       input = nil
-      while input != "x"
-      input = gets.to_i
-      if input.between?(1,13)
+      while input != "exit"
+      input = gets.chomp.downcase
+      if input.to_i.between?(1,13)
       @headlines = Scraper.scrape_headline
-      puts @headlines[input-1].colorize(:red)
+      puts @headlines[input.to_i-1].colorize(:red)
       @today = Scraper.scrape_today
-      puts @today[input-1].colorize(:red)
+      puts @today[input.to_i-1].colorize(:red)
     else
       puts "Oops! Please enter a number 1 to 13!"
-      puts "Or type 'x' to exit."
+      puts "Or type 'exit' to exit."
     end
   end
   end
