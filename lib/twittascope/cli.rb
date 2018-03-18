@@ -21,7 +21,6 @@ class Twittascope::CLI
       puts "try again"
     end
   end
-  binding.pry
 end
 
 
@@ -52,12 +51,17 @@ end
       puts @headlines[input.to_i-1].colorize(:red)
       @today = Scraper.scrape_today
       puts @today[input.to_i-1].colorize(:red)
+    elsif input == "exit"
+      puts "Goodbye! Come back to check your fortune!"
+      exit
     else
       puts "Oops! Please enter a number 1 to 13!"
       puts "Or type 'exit' to exit."
     end
   end
-  end
+end
+
+
 
 
   # def more_options
