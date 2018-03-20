@@ -28,18 +28,19 @@ class Twittascope::CLI
      puts "Type 'list' to see the list again."
      puts "Type 'yesterday' to see yesterday's horoscope."
      puts "Type 'tomorrow' to see tomorrow's horoscope."
-     puts "Type 'exit' to exit."
+     puts "Type 'x' to exit."
       input = nil
       while input != "x"
       input = gets.chomp.downcase
         if input == "list"
-          welcome
+          Twittascope::CLI.play
         elsif input == "yesterday"
           puts "you are reading yesterday's horoscope."
         elsif input == "tomorrow"
           puts "you are reading tomorrow's horoscope."
         elsif input == "x"
           puts "Goodbye! Come back to check your fortune!"
+          exit
         else
           puts "not sure what you mean, try again."
         end
