@@ -19,28 +19,20 @@ class Scraper
 
   def self.scrape_headline
     headlines = []
-    doc = Nokogiri::HTML(open(@@url))
-      main = doc.search("ul.site-sign-list li a").each do |t|
-        url = @@url + t["href"]
+    scrape_urls.each do |site|
+      title = Nokogiri::HTML(open(site))
+      headline = title.search("h1").text
+      headlines << headline
+    end
+    headlines
+  end
 
-      # name = url.gsub("http://www.twittascope.com/?sign=", "").capitalize
-
-        title = Nokogiri::HTML(open(url))
-        headline = title.search("h1").text
-        headlines << headline
-        end
-        headlines
-      end
 
 
   def self.scrape_today
     todays = []
-    doc = Nokogiri::HTML(open(@@url))
-      main = doc.search("ul.site-sign-list li a").each do |t|
-        url = @@url + t["href"]
-      # name = url.gsub("http://www.twittascope.com/?sign=", "").capitalize
-
-      title = Nokogiri::HTML(open(url))
+    scrape_urls.each do |site|
+      title = Nokogiri::HTML(open(site))
       tod_copy = title.search(".dh-copy p").text
       todays << tod_copy
       # headlines.each_with_index do |sign, index|
@@ -51,11 +43,8 @@ end
 
   def self.scrape_yesterday
     yesterdays = []
-    doc = Nokogiri::HTML(open(@@url))
-    main = doc.search("ul.site-sign-list li a").each do |t|
-    url = @@url + t["href"]
-
-      title = Nokogiri::HTML(open(url))
+    scrape_urls.each do |site|
+      title = Nokogiri::HTML(open(site))
         yesterday = title.search("ul.date-nav .yesterday").each do |yes|
         yesterday_url = "http://www.twittascope.com" + yes["href"]
 
@@ -69,11 +58,8 @@ end
 
   def self.scrape_tomorrow
     tomorrows = []
-    doc = Nokogiri::HTML(open(@@url))
-    main = doc.search("ul.site-sign-list li a").each do |t|
-    url = @@url + t["href"]
-
-    title = Nokogiri::HTML(open(url))
+    scrape_urls.each do |site|
+      title = Nokogiri::HTML(open(site))
      tomorrow = title.search("ul.date-nav .tomorrow").each do |tom|
       tomorrow_url = "http://www.twittascope.com" + tom["href"]
 
@@ -83,7 +69,6 @@ end
       end
     end
     tomorrows
-    binding.pry
   end
 
 

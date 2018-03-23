@@ -14,9 +14,9 @@ class Twittascope::CLI
     puts "Welcome to Twittascope!".yellow
     puts "Type in the number of your Horoscope sign!".yellow
       @headlines = Scraper.scrape_headline
-       @headlines[0..12].each_with_index do |h1, index|
-         puts "#{index+1}. #{h1}".colorize(:blue)
-       end
+      #  @headlines[0..12].each_with_index do |h1, index|
+      #    puts "#{index+1}. #{h1}".colorize(:blue)
+      #  end
   end
 
 
