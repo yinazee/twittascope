@@ -1,4 +1,5 @@
 require 'colorize'
+require 'pry'
 
 class Twittascope::CLI
 
@@ -6,25 +7,24 @@ class Twittascope::CLI
     welcome
     display_today
     more_options
-    goodbye
+    # goodbye
   end
-
 
   def self.welcome
     puts "Welcome to Twittascope!".yellow
     puts "Type in the number of your Horoscope sign!".yellow
-      @headlines = Scraper.scrape_headline
-      #  @headlines[0..12].each_with_index do |h1, index|
-      #    puts "#{index+1}. #{h1}".colorize(:blue)
-      #  end
+
+    @headlines = Scraper.scrape_headline
+    @headlines[0..12].each_with_index do |h1, index|
+      puts "#{index+1}. #{h1}".colorize(:blue)
+    end
   end
 
+  # def self.goodbye
+  #   puts "Goodluck!"
+  # end
 
-  def self.goodbye
-    puts "Goodluck!"
-  end
-
-  def self.more_options
+  def self.more_options(user_input)
      puts "Type 'list' to see the list again."
      puts "Type 'yesterday' to see yesterday's horoscope."
      puts "Type 'tomorrow' to see tomorrow's horoscope."
@@ -35,9 +35,14 @@ class Twittascope::CLI
         if input == "list"
           Twittascope::CLI.play
         elsif input == "yesterday"
-          puts "you are reading yesterday's horoscope."
+          @yesterday = Scraper.scrape_yesterday
+          puts @yesterday[user_input]
+          more_options(user_input)
         elsif input == "tomorrow"
           puts "you are reading tomorrow's horoscope."
+          @tomorrow = Scraper.scrape_tomorrow
+          puts @tomorrow[user_input]
+          more_options(user_input)
         elsif input == "x"
           puts "Goodbye! Come back to check your fortune!"
           exit
@@ -55,9 +60,9 @@ class Twittascope::CLI
       if input.to_i.between?(1,13)
       @headlines = Scraper.scrape_headline
       puts @headlines[input.to_i-1].colorize(:red)
-      @today = Scraper.scrape_today
+      @today = Scraper.scrape_today(input.to_i-1)
       puts @today[input.to_i-1].colorize(:red)
-      more_options
+      more_options(input.to_i-1)
     elsif input == "x"
       puts "Goodbye! Come back to check your fortune!"
       exit

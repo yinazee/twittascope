@@ -7,13 +7,13 @@ class Scraper
   @@url = "http://www.twittascope.com"
 
   def self.scrape_urls
-    urls = []
+    @@urls = []
     doc = Nokogiri::HTML(open(@@url))
       main = doc.search("ul.site-sign-list li a").each do |t|
         url = @@url + t["href"]
-        urls << url
+        @@urls << url
       end
-      urls
+      @@urls[0..12]
     end
 
 
@@ -29,17 +29,15 @@ class Scraper
 
 
 
-  def self.scrape_today
+  def self.scrape_today(user_input)
     todays = []
     scrape_urls.each do |site|
       title = Nokogiri::HTML(open(site))
       tod_copy = title.search(".dh-copy p").text
       todays << tod_copy
-      # headlines.each_with_index do |sign, index|
-      # puts "#{index+1}. #{sign}"
+    end
+    todays
   end
-  todays
-end
 
   def self.scrape_yesterday
     yesterdays = []
@@ -71,9 +69,6 @@ end
     tomorrows
   end
 
-
-  # name = url.gsub("http://www.twittascope.com/?sign=", "").capitalize
-      # Horoscope.new(url, name)
 
 
 end #closes Scraper
