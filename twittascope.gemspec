@@ -9,9 +9,9 @@ Gem::Specification.new do |spec|
   spec.authors       = ["'Yina Zhu'"]
   spec.email         = ["'yinagit@gmail.com'"]
 
-  spec.summary       = %q{Reads today's horoscope.}
-  spec.description   = %q{Reads today's horoscope.}
-  spec.homepage      = "http://www.twittascope.com"
+  spec.summary       = %q{Reads horoscopes.}
+  spec.description   = %q{Reads horoscopes.}
+  spec.homepage      = "https://github.com/yinazee/twittascope"
   spec.license       = "MIT"
 
   # Prevent pushing this gem to RubyGems.org. To allow pushes either set the 'allowed_push_host'
@@ -36,7 +36,5 @@ Gem::Specification.new do |spec|
   spec.add_development_dependency "pry"
   spec.add_dependency "nokogiri", "~> 1.8.1"
   spec.add_dependency "colorize", "~> 0.8"
-  spec.add_dependency "spinning_cursor", "0.3.0"
-
 
 end
