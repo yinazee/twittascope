@@ -14,7 +14,6 @@ class Twittascope::CLI
     puts "\nWelcome to Twittascope!\n".yellow
     sleep (2)
     puts "Loading..................................\n".black
-
     Scraper.scrape_headline[0..12].each_with_index do |h1, index|
       puts "#{index+1}. #{h1}\n".colorize(:blue)
     end
@@ -59,6 +58,7 @@ class Twittascope::CLI
       while input != "x"
       input = gets.chomp.downcase
       if input.to_i.between?(1,13)
+      puts " "
       @headlines = Scraper.scrape_headline
       puts @headlines[input.to_i-1].colorize(:red)
       puts " "
