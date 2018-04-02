@@ -9,7 +9,6 @@ class Twittascope::CLI
     more_options
   end
 
-
   def self.welcome
     puts "\nWelcome to Twittascope!\n".yellow
     sleep (2)
