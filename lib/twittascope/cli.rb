@@ -32,14 +32,12 @@ class Twittascope::CLI
           Twittascope::CLI.play
         elsif input == "yesterday"
           puts "\nYou are reading yesterday's horoscope.\n".magenta
-          @yesterday = Scraper.scrape_yesterday
-          puts @yesterday[user_input].magenta
+          puts Scraper.scrape_yesterday[user_input].magenta
           puts " "
           more_options(user_input)
         elsif input == "tomorrow"
           puts "\nYou are reading tomorrow's horoscope.\n".cyan
-          @tomorrow = Scraper.scrape_tomorrow
-          puts @tomorrow[user_input].colorize(:cyan)
+          puts Scraper.scrape_tomorrow[user_input].colorize(:cyan)
           puts " "
           more_options(user_input)
         elsif input == "x"
@@ -58,11 +56,9 @@ class Twittascope::CLI
       input = gets.chomp.downcase
       if input.to_i.between?(1,13)
       puts " "
-      @headlines = Scraper.scrape_headline
-      puts @headlines[input.to_i-1].colorize(:red)
+      puts Scraper.scrape_headline[input.to_i-1].colorize(:red)
       puts " "
-      @today = Scraper.scrape_today(input.to_i-1)
-      puts @today[input.to_i-1].colorize(:red)
+      puts Scraper.scrape_today(input.to_i-1)[input.to_i-1].colorize(:red)
       puts " "
       more_options(input.to_i-1)
     elsif input == "x"
