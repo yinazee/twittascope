@@ -2,56 +2,38 @@ require 'open-uri'
 require 'nokogiri'
 require 'pry'
 
-class Scraper
+class Twittascope::Scraper
 
   @@url = "http://www.twittascope.com"
 
-  def self.scrape_urls
-    doc = Nokogiri::HTML(open(@@url))
-   #=====Iterating only 0 to 12 because #13 is a duplicate of #12====#
-      doc.search("ul.site-sign-list li a")[0..12].collect do |t|
-      url = @@url + t["href"]
+  def self.scraper
+    @doc = Nokogiri::HTML(open(@@url))
+    @doc.search("ul.site-sign-list li a").collect do |url|
+      horoscope = Twittascope::Horoscope.new
+
+      horoscope.url = @@url + url["href"]
+      anchor = Nokogiri::HTML(open(horoscope.url))
+      horoscope.headline = anchor.search("h1").text
+      horoscope.today = anchor.search(".dh-copy p").text
+
+      #scrapes yesterday's horoscope reading
+      anchor.search("ul.date-nav .yesterday").collect do |yes|
+      yesterday_url = @@url + yes["href"]
+      yes_doc = Nokogiri::HTML(open(yesterday_url))
+      horoscope.yesterday = yes_doc.search(".dh-copy p").text
+
+      #scrapes tomorrow's horoscope reading
+      anchor.search("ul.date-nav .tomorrow").collect do |tom|
+      tom_url = @@url + tom["href"]
+      tom_doc = Nokogiri::HTML(open(tom_url))
+      horoscope.tomorrow = tom_doc.search(".dh-copy p").text
+
+      horoscope.save
+
+
+      end
       end
     end
-
-  def self.scrape_headline
-    scrape_urls.collect do |site|
-      title = Nokogiri::HTML(open(site))
-      headline = title.search("h1").text
-    end
   end
-
-  def self.scrape_today(user_input)
-    scrape_urls.collect do |site|
-      title = Nokogiri::HTML(open(site))
-      tod_copy = title.search(".dh-copy p").text
-    end
-  end
-
-  def self.scrape_yesterday
-    scrape_urls.each do |site|
-      title = Nokogiri::HTML(open(site))
-        yesterday = title.search("ul.date-nav .yesterday").collect do |yes|
-          yesterday_url = "http://www.twittascope.com" + yes["href"]
-
-          yes_doc = Nokogiri::HTML(open(yesterday_url))
-          yes_copy = yes_doc.search(".dh-copy p").text
-        end
-    end
-  end
-
-  def self.scrape_tomorrow
-    scrape_urls.each do |site|
-      title = Nokogiri::HTML(open(site))
-        tomorrow = title.search("ul.date-nav .tomorrow").collect do |tom|
-          tomorrow_url = "http://www.twittascope.com" + tom["href"]
-
-          tom_doc = Nokogiri::HTML(open(tomorrow_url))
-          tom_copy = tom_doc.search(".dh-copy p").text
-        end
-    end
-  end
-
-
 
 end #closes Scraper
