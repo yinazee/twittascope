@@ -29,6 +29,7 @@ class Scraper
   end
 
   def self.scrape_yesterday
+    yesterdays = []
     scrape_urls.each do |site|
       title = Nokogiri::HTML(open(site))
         yesterday = title.search("ul.date-nav .yesterday").collect do |yes|
@@ -36,11 +37,14 @@ class Scraper
 
           yes_doc = Nokogiri::HTML(open(yesterday_url))
           yes_copy = yes_doc.search(".dh-copy p").text
+          yesterdays << yes_copy
         end
     end
+    yesterdays
   end
 
   def self.scrape_tomorrow
+    tomorrows = []
     scrape_urls.each do |site|
       title = Nokogiri::HTML(open(site))
         tomorrow = title.search("ul.date-nav .tomorrow").collect do |tom|
@@ -48,8 +52,10 @@ class Scraper
 
           tom_doc = Nokogiri::HTML(open(tomorrow_url))
           tom_copy = tom_doc.search(".dh-copy p").text
+          tomorrows << tom_copy
         end
     end
+    tomorrows
   end
 
 
