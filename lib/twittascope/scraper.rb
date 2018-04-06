@@ -30,6 +30,11 @@ class Twittascope::Scraper
 
       horoscope.save
 
+      # a = twittascope::scraper.scraper
+      # a.flatten.flatten
+      # a[1] should equal to taurus object
+      # a[1].headline should equal to taurus headline
+
 
       end
       end
