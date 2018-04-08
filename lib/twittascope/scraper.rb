@@ -6,13 +6,15 @@ class Twittascope::Scraper
 
   @@url = "http://www.twittascope.com"
 
-  def self.scraper
+
+  def self.scrape_all_attr
+
     @doc = Nokogiri::HTML(open(@@url))
     @doc.search("ul.site-sign-list li a").collect do |url|
       horoscope = Twittascope::Horoscope.new
 
       horoscope.url = @@url + url["href"]
-      anchor = Nokogiri::HTML(open(horoscope.url))
+      anchor = Nokogiri::HTML(open(@@url + url["href"]))
       horoscope.headline = anchor.search("h1").text
       horoscope.today = anchor.search(".dh-copy p").text
 
@@ -28,17 +30,33 @@ class Twittascope::Scraper
       tom_doc = Nokogiri::HTML(open(tom_url))
       horoscope.tomorrow = tom_doc.search(".dh-copy p").text
 
-      horoscope.save
+      Twittascope::Horoscope.all << horoscope.save
 
-      # a = twittascope::scraper.scraper
-      # a.flatten.flatten
-      # a[1] should equal to taurus object
-      # a[1].headline should equal to taurus headline
-
+      # binding.pry
 
       end
       end
     end
   end
+
+  def self.create_hash
+    self.scrape_all_attr.collect do |hash|
+      Twittascope::Horoscope.all << hash
+    end
+  end
+  # def separate(input)
+  #   input = gets.to_i-1
+  #   a = self.scrape_all_attr
+  #   b = a.flatten.flatten
+  #   b[input].headline =
+  #
+  # end
+
+
+        # a = twittascope::scraper.scraper
+        # b = a.flatten.flatten
+        # b[1] should equal to taurus object
+        # b[1].headline should equal to taurus headline
+
 
 end #closes Scraper
