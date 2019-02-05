@@ -4,7 +4,7 @@ require 'pry'
 
 class Scraper
 
-  @@url = "http://www.twittascope.com"
+  @@url = "https://www.twittascope.com"
 
   def self.scrape_urls
     doc = Nokogiri::HTML(open(@@url))
@@ -33,7 +33,7 @@ class Scraper
     scrape_urls.each do |site|
       title = Nokogiri::HTML(open(site))
         yesterday = title.search("ul.date-nav .yesterday").collect do |yes|
-          yesterday_url = "http://www.twittascope.com" + yes["href"]
+          yesterday_url = "https://www.twittascope.com" + yes["href"]
 
           yes_doc = Nokogiri::HTML(open(yesterday_url))
           yes_copy = yes_doc.search(".dh-copy p").text
@@ -48,7 +48,7 @@ class Scraper
     scrape_urls.each do |site|
       title = Nokogiri::HTML(open(site))
         tomorrow = title.search("ul.date-nav .tomorrow").collect do |tom|
-          tomorrow_url = "http://www.twittascope.com" + tom["href"]
+          tomorrow_url = "https://www.twittascope.com" + tom["href"]
 
           tom_doc = Nokogiri::HTML(open(tomorrow_url))
           tom_copy = tom_doc.search(".dh-copy p").text

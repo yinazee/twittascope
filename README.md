@@ -25,6 +25,12 @@ May need to run 'bundle install' and/or 'gem install colorize'.
 Add $ spec.add_dependency "colorize", "~> 0.8" to your gemspec file.
 Add $ require 'colorize' on top of page needed
 
+Then run the following in your terminal:
+
+  $ ruby bin/twittascope
+
+  Have fun!
+
 ## Development
 
 After checking out the repo, run `bin/setup` to install dependencies. You can also run `bin/console` for an interactive prompt that will allow you to experiment.
@@ -41,7 +47,7 @@ The gem is available as open source under the terms of the [MIT License](https:/
 
 ## Code of Conduct
 
-Everyone interacting in the Twittascope project’s codebases, issue trackers, chat rooms and mailing lists is expected to follow the [code of conduct](https://github.com/'yinazee'/twittascope/blob/master/CODE_OF_CONDUCT.md).
+Everyone interacting in the Twittascope project’s codebases, issue trackers, chat rooms and mailing lists is expected to follow the [code of conduct](https://github.com/yinazee/twittascope/blob/master/CODE_OF_CONDUCT.md).
 # twittascope
 
 =========================================
