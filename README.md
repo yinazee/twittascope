@@ -6,6 +6,9 @@ Instead of clicking through multiple links on twittascope.com, the horoscope wil
 
 Each horoscope sign has a yesterday, today, and tomorrow reading of your fortune.  Each reading ends with a insightful quote.
 
+Here is the YouTube video for my project:
+https://youtu.be/ilhzsW8RX7A
+
 ## Installation
 
 Add this line to your application's Gemfile:
